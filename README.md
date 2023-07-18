@@ -1,7 +1,8 @@
-## Chrome extension emplate genreated from [JohnBra](https://github.com/JohnBra/vite-web-extension)
+# Omni ToolBox
 
+### Chrome extension emplate genreated from [JohnBra](https://github.com/JohnBra/vite-web-extension)
 
-## Features
+### Features
 
 1. ZSTD wasm biding for web/Chrome extension enviorment
 2. BASE64 encode/decode
