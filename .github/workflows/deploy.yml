@@ -44,7 +44,7 @@ jobs:
 
 
       - name: Build project
-        run: pnpm run build
+        run: pnpm run build-gh
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v3

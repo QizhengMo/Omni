@@ -10,6 +10,7 @@
   },
   "scripts": {
     "build": "vite build",
+    "build-gh": "vite build --mode gh",
     "dev": "nodemon",
     "webdev": "vite --port 3000 --open"
   },
