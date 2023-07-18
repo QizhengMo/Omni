@@ -1,6 +1,6 @@
 # Omni ToolBox
 
-### Chrome extension emplate genreated from [JohnBra](https://github.com/JohnBra/vite-web-extension)
+### Chrome extension template genreated from [JohnBra](https://github.com/JohnBra/vite-web-extension)
 
 ### Features
 
