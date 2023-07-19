@@ -8,13 +8,11 @@ export function Header(props: any) {
         <a className="btn btn-ghost normal-case text-xl">Omni</a>
       </div>
 
-      <div className="navbar-center hidden lg:flex">
+      <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li><a>Encoders</a></li>
-          <li><a>Formatters</a></li>
+          {/*<li><a>Formatters</a></li>*/}
         </ul>
-      </div>
-      <div className="navbar-end">
       </div>
     </div>
   );
