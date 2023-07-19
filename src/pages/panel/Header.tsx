@@ -1,13 +1,11 @@
 import * as React from "react";
-import { useState } from "react";
-type Module = Record<string, string>;
-const MODULES: readonly Module[] = [
-  { ENCODERS: "Encoders & Compressors" },
-  { FORMATTERS: "Formatters" },
-] as const;
+import { ModuleContext, MODULES, Module } from "@pages/panel/Panel";
+import { useContext } from "react";
 
-export function Header(props: any) {
-  const [selected, setSelected] = useState(MODULES[0]);
+type Props = { setSelected: (module: Module) => void };
+export function Header(props: Props) {
+  const { setSelected } = props;
+  const selected = useContext(ModuleContext);
   return (
     <div className="navbar bg-base-100 pr-6">
       <div className="navbar-start">
@@ -16,7 +14,7 @@ export function Header(props: any) {
 
       <div className="navbar-end lg:flex">
         <ul className="menu menu-horizontal px-1 bg-base-200">
-          {MODULES.map((module) => (
+          {Object.values(MODULES).map((module) => (
             <HeaderItem
               key={JSON.stringify(module)}
               selected={selected}
@@ -33,15 +31,17 @@ export function Header(props: any) {
 type HeaderItemProps = {
   module: Module;
   selected: Module;
-  onClick: () => void
+  onClick: () => void;
 };
 const HeaderItem = (props: HeaderItemProps) => {
   const { module, onClick, selected } = props;
-  const selfSelected = selected === module
-  const moduleDisName = Object.values(module)[0]
+  const selfSelected = selected === module;
+  const moduleDisName = Object.values(module)[0];
   return (
     <li>
-      <a onClick={onClick} className={selfSelected ? "active" : ""}>{moduleDisName}</a>
+      <a onClick={onClick} className={selfSelected ? "active" : ""}>
+        {moduleDisName}
+      </a>
     </li>
   );
 };
