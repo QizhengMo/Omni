@@ -10,7 +10,7 @@ export function Header(props: any) {
 
       <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <li><a>Encoders</a></li>
+          <li><a>Encoders & Compressors</a></li>
           {/*<li><a>Formatters</a></li>*/}
         </ul>
       </div>
