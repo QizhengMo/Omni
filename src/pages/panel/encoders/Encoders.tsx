@@ -5,10 +5,12 @@ import { TabPanels } from "@src/componenst/Tabs/TabPanels";
 import { Base64Tab } from "@pages/panel/encoders/Base64Tab";
 import { ZstdTab } from "@pages/panel/encoders/ZstdTab";
 import { Base91Tab } from "@pages/panel/encoders/Base91";
+import {GzipTab} from "@pages/panel/encoders/GzipTab";
 const TABS = {
   BASE64: "BASE64",
   BASE91: "BASE91",
   ZSTD: "ZSTD",
+  GZIP: "GZIP"
 };
 
 export function Encoders() {
@@ -32,6 +34,11 @@ export function Encoders() {
           tabKey={TABS.ZSTD}
           setSelected={setActiveTab}
         />
+        <Tab
+          selected={activeTab}
+          tabKey={TABS.GZIP}
+          setSelected={setActiveTab}
+        />
       </div>
 
       <TabPanels
@@ -39,6 +46,7 @@ export function Encoders() {
           { key: TABS.BASE64, panel: <Base64Tab /> },
           { key: TABS.BASE91, panel: <Base91Tab /> },
           { key: TABS.ZSTD, panel: <ZstdTab /> },
+          { key: TABS.GZIP, panel: <GzipTab /> },
         ]}
         activeTabKey={activeTab}
       />

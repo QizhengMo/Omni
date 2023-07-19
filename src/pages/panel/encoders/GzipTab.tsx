@@ -1,33 +1,24 @@
 import React from "react";
-// @ts-ignore
-import { Zstd } from "@hpcc-js/wasm/zstd";
-import { useRequest } from "ahooks";
+import pako from "pako";
 import { ActionButton } from "@src/componenst/ActionButton";
 import { ToolAreaHeader } from "@src/componenst/ToolAreaHeader";
 import { EncodersTextArea } from "@src/componenst/EncodersTextArea";
 import { SizeDisplay } from "@pages/panel/encoders/SizeDisplay";
-import { base64ToBytes, bytesToBase64 } from "@pages/panel/encoders/utils";
+import {base64ToBytes, bytesToBase64} from "@pages/panel/encoders/utils";
 
-export const ZstdTab = () => {
+export const GzipTab = () => {
   const [source, setSource] = React.useState("");
   const [compressed, setCompressed] = React.useState("");
-  const { data: zstdInstance, loading } = useRequest(() => {
-    return Zstd.load();
-  });
 
   const handleCompress = () => {
-    setCompressed(compress(zstdInstance, source));
+    setCompressed(compress(source));
   };
 
   const handleDecode = () => {
-    setSource(decompress(zstdInstance, compressed));
+    setSource(decompress(compressed));
   };
 
-  return loading ? (
-    <>
-      <h2>Loading ZSTD instance...</h2>
-    </>
-  ) : (
+  return (
     <div style={{ width: "100%" }}>
       <div style={{ width: "100%" }}>
         <ToolAreaHeader
@@ -71,13 +62,10 @@ export const ZstdTab = () => {
   );
 };
 
-function compress(zstd: Zstd, source: string) {
-  const compressedArr = zstd.compress(new TextEncoder().encode(source));
-  return bytesToBase64(compressedArr);
+function compress(source: string) {
+  return bytesToBase64(pako.gzip(source));
 }
 
-function decompress(zstd: Zstd, source: string) {
-  const bytes = base64ToBytes(source);
-  const decompressed = zstd.decompress(bytes);
-  return new TextDecoder().decode(decompressed);
+function decompress(source: string) {
+  return pako.ungzip(base64ToBytes(source), { to: "string" });
 }
