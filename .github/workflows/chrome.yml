@@ -1,4 +1,4 @@
-name: Deploy
+name: Chrome Extension Artifact Build
 
 on:
   push:
@@ -54,6 +54,6 @@ jobs:
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v3
         with:
-          name: production-files
+          name: OmniChromeExt ${{ matrix.node-version }}.zip
           path: |
             ./dist.zip
