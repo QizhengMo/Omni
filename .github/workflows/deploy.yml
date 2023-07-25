@@ -3,7 +3,7 @@ name: Deploy
 on:
   push:
     branches:
-      - main
+      - chrome_release
 
 jobs:
   build:
@@ -44,7 +44,7 @@ jobs:
 
 
       - name: Build project
-        run: pnpm run build-gh
+        run: pnpm run build
 
       - name: Zip production-ready build files
         uses: montudor/action-zip@v1
@@ -56,24 +56,4 @@ jobs:
         with:
           name: production-files
           path: |
-            ./dist
             ./dist.zip
-
-  deploysite:
-    name: DeploySite
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: production-files
-          path: ./dist
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
