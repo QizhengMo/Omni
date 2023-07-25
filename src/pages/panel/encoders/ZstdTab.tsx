@@ -1,36 +1,27 @@
-import React, {useState} from "react";
-import { useRequest } from "ahooks";
+import React, { useState } from "react";
 import { ActionButton } from "@src/componenst/ActionButton";
 import { ToolAreaHeader } from "@src/componenst/ToolAreaHeader";
 import { EncodersTextArea } from "@src/componenst/EncodersTextArea";
 import { SizeDisplay } from "@pages/panel/encoders/SizeDisplay";
 import { base64ToBytes, bytesToBase64 } from "@pages/panel/encoders/utils";
-import { ZstdInit } from "@oneidentity/zstd-js";
+import { ZstdSimple, ZstdStream } from "@oneidentity/zstd-js";
 
 export const ZstdTab = () => {
   const [source, setSource] = React.useState("");
   const [compressed, setCompressed] = React.useState("");
   const [stream, setStream] = useState(true);
 
-  const { data: ZstdCodec, loading } = useRequest(async () => {
-    return await ZstdInit();
-  });
-  const zstdInstance = React.useMemo(() => {
-    return stream ? ZstdCodec?.ZstdStream : ZstdCodec?.ZstdSimple;
-  }, [loading, stream]);
-  const handleCompress = () => {
-    setCompressed(compress(zstdInstance!, source));
+  const handleCompress = async () => {
+    const zstdInstance = stream ? ZstdStream : ZstdSimple;
+    setCompressed(compress(zstdInstance, source));
   };
 
-  const handleDecode = () => {
-    setSource(decompress(zstdInstance!, compressed));
+  const handleDecode = async () => {
+    const zstdInstance = stream ? ZstdStream : ZstdSimple;
+    setSource(decompress(zstdInstance, compressed));
   };
 
-  return loading ? (
-    <>
-      <h2>Loading ZSTD instance...</h2>
-    </>
-  ) : (
+  return (
     <div style={{ width: "100%" }}>
       <div style={{ width: "100%" }}>
         <div className="w-full flex justify-end mb-3">
