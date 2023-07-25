@@ -1,8 +1,8 @@
 {
-  "name": "vite-web-extension",
-  "displayName": "Web Extension Boilerplate",
+  "name": "omni-toolbox",
+  "displayName": "Omni Toolbox",
   "version": "1.1.0",
-  "description": "A simple chrome extension template with Vite, React, TypeScript and Tailwind CSS.",
+  "description": "Web Development Toolbox containing multiple encode/decoders, compress/decompressors like zstd, base91",
   "license": "MIT",
   "repository": {
     "type": "git",
