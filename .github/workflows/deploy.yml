@@ -46,14 +46,21 @@ jobs:
       - name: Build project
         run: pnpm run build-gh
 
+      - name: Zip production-ready build files
+        uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r dist.zip ./dist
+
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v3
         with:
           name: production-files
-          path: ./dist
+          path: |
+            ./dist
+            ./dist.zip
 
-  deploy:
-    name: Deploy
+  deploysite:
+    name: DeploySite
     needs: build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
