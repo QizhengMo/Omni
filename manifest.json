@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Web Extension Boilerplate",
+  "name": "Omni Toolbox",
   "version": "1.1.0",
-  "description": "A simple chrome extension template with Vite, React, TypeScript and Tailwind CSS.",
+  "description": "Web Development Toolbox containing multiple encode/decoders, compress/decompressors like zstd, base91",
   "options_ui": {
     "page": "src/pages/options/index.html"
   },
