@@ -1,11 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
 import Panel from "@pages/panel/Panel";
-import "./index.css"
-const root = ReactDOM.createRoot(document.getElementById('root')!);
+import "./index.css";
+import { ZstdInit } from "@oneidentity/zstd-js";
+const root = ReactDOM.createRoot(document.getElementById("root")!);
 
-root.render(
-  <React.StrictMode>
-    <Panel />
-  </React.StrictMode>
-);
+ZstdInit().then(() => {
+  console.log("ZstdInit done");
+  root.render(
+    <React.StrictMode>
+      <Panel />
+    </React.StrictMode>,
+  );
+});
