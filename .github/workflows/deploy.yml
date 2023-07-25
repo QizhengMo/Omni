@@ -48,7 +48,8 @@ jobs:
 
       - name: Zip production-ready build files
         uses: montudor/action-zip@v1
-        run: zip -r dist.zip ./dist
+        with:
+          args: zip -qq -r dist.zip ./dist
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v3
