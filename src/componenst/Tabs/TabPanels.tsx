@@ -9,6 +9,17 @@ type Props = {
 export function TabPanels(props: Props) {
   const { panels } = props;
   return (
-    <div>{panels.find((panel) => panel.key === props.activeTabKey)?.panel}</div>
+    <div>
+      {panels.map((panel) => {
+        if (panel.key === props.activeTabKey) {
+          return <div key={panel.key}>{panel.panel}</div>;
+        }
+        return (
+          <div key={panel.key} className="hidden">
+            {panel.panel}
+          </div>
+        );
+      })}
+    </div>
   );
 }
