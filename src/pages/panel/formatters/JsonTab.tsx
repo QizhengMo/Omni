@@ -29,18 +29,23 @@ export function JsonTab(props: Props) {
         className="w-full flex mt-2"
         style={{ height: "calc(100vh - 200px)" }}
       >
-        <div className="w-1/2 min-h-full">
+        <div className="flex-1 min-h-full">
           <textarea
             placeholder="Json string here..."
             value={json}
             onChange={(e) => setJson(e.target.value)}
-            className="textarea textarea-bordered textarea-lg min-h-full w-full "
+            className="textarea textarea-bordered min-h-full w-full "
           ></textarea>
         </div>
 
-        <div className="divider divider-horizontal"></div>
+        <div className="divider divider-horizontal px-10">
+          <button className="btn btn-outline" onClick={() => {
+            if (!isJson(json)) return
+            setJson(JSON.stringify(JSON.parse(json), null, 2))
+          }}>Format</button>
+        </div>
 
-        <div className="w-1/2 min-h-full bg-base-300">
+        <div className="flex-1 min-h-full bg-base-300">
           {isJson(json) ? (
             <ReactJson
               style={{
