@@ -36,7 +36,7 @@ export function Header(props: Props) {
                   selected={selected}
                   module={module}
                   onClick={() => {
-                    setOpen(false)
+                    setOpen(false);
                     setSelected(module);
                   }}
                 />
@@ -59,7 +59,9 @@ const HeaderItem = (props: HeaderItemProps) => {
   const moduleDisName = Object.values(module)[0];
   return (
     <li>
-      <a onClick={onClick}>{moduleDisName}</a>
+      <a className={module === selected ? "active" : ""} onClick={onClick}>
+        {moduleDisName}
+      </a>
     </li>
   );
 };
